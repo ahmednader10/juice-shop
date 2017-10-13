@@ -123,5 +123,15 @@ describe('controllers', function () {
 
       expect(console.log).toHaveBeenCalledWith('error')
     }))
+
+    it('should hold the user email of the currently logged in user', inject(function () {
+      $httpBackend.whenGET('/rest/admin/application-version').respond(200, {})
+      $httpBackend.whenGET('/rest/admin/application-configuration').respond(200, {config: {}})
+      $httpBackend.whenGET('/rest/user/whoami').respond(200, {user: {email: 'x@x.xx'}})
+
+      $httpBackend.flush()
+
+      expect(scope.userEmail).toBe('x@x.xx')
+    }))
   })
 })
