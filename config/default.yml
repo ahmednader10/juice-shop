@@ -2,49 +2,49 @@ server:
   port: 3000
 application:
   domain: "juice-sh.op"
-  name: "OWASP Juice Shop"
+  name: "Pivotal Shop"
   logo: "JuiceShop_Logo.png"
   favicon: "favicon_v2.ico"
   numberOfRandomFakeUsers: 0
   showChallengeSolvedNotifications: true
-  showCtfFlagsInNotifications: false
-  showGitHubRibbon: true
+  showCtfFlagsInNotifications: true
+  showGitHubRibbon: false
   showChallengeHints: true
-  theme: "slate" # Options: cerulean  cosmo  cyborg  darkly  flatly lumen  paper  readable  sandstone  simplex  slate  spacelab  superhero  united  yeti
+  theme: "cerulean" # Options: cerulean  cosmo  cyborg  darkly  flatly lumen  paper  readable  sandstone  simplex  slate  spacelab  superhero  united  yeti
   twitterUrl: "https://twitter.com/owasp_juiceshop"
   facebookUrl: "https://www.facebook.com/owasp.juiceshop"
   recyclePage:
     topProductImage: "fruit_press.jpg"
     bottomProductImage: "apple_pressings.jpg"
 products:
-  - name: "Apple Juice (1000ml)"
+  - name: "Agile Development"
     price: 1.99
     description: "The all-time classic."
     image: "apple_juice.jpg"
     reviews:
       - text: 'One of my favorites!'
         author: 'admin' # Options: admin, jim, bender, ciso, support
-  - name: 'Orange Juice (1000ml)'
+  - name: 'Enablement'
     description: 'Made from oranges hand-picked by Uncle Dittmeyer.'
     price: 2.99
     image: 'orange_juice.jpg'
-  - name: 'Eggfruit Juice (500ml)'
-    description: 'Now with even more exotic flavour.'
+  - name: 'PCF'
+    description: 'Now just a button click away'
     price: 8.99
     image: 'eggfruit_juice.jpg'
     reviews:
       - text: 'I bought it, would buy again. 5/7'
         author: 'admin'
-  - name: 'Raspberry Juice (1000ml)'
-    description: 'Made from blended Raspberry Pi, water and sugar.'
+  - name: 'Greenplum'
+    description: 'Made from blended green plums, water and sugar.'
     price: 4.99
     image: 'raspberry_juice.jpg'
-  - name: 'Lemon Juice (500ml)'
-    description: 'Sour but full of vitamins.'
+  - name: 'Command Center'
+    description: 'Captain chair of the enterprise'
     price: 2.99
     image: 'lemon_juice.jpg'
-  - name: 'Banana Juice (1000ml)'
-    description: 'Monkeys love it the most.'
+  - name: 'Strong opinion, lightly held'
+    description: 'Finally, someone willing to have opinion, but be changed by facts'
     price: 1.99
     image: 'banana_juice.jpg'
     reviews:
@@ -141,8 +141,8 @@ products:
     description: 'The wheels of this bicycle are made from real water melons.'
     price: 1999
     image: 'melon_bike.jpeg'
-  - name: 'Strawberry Juice (500ml)'
-    description: 'Sweet & tasty!'
+  - name: 'Balanced Team'
+    description: 'Delivering great products in unified fashion'
     price: 3.99
     image: 'strawberry_juice.jpeg'
   - name: 'Carrot Juice (1000ml)'
