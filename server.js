@@ -214,7 +214,7 @@ exports.start = function (readyCallback) {
     io.on('connection', socket => {
       // notify only first client to connect about server start
       if (firstConnectedSocket === null) {
-        socket.emit('server started')
+        socket.emit('new record')
         firstConnectedSocket = socket.id
       }
 

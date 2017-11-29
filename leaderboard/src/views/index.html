@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <title><Table> Pivotal Shop Leaderboard</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/style.css">
-
-  
+    <meta charset="UTF-8">
+    <title>Pivotal Shop Leaderboard</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('new record', function(users) {
+            data = users
+            location.reload()
+        })
+    </script>
 </head>
 
 <body>
@@ -22,15 +26,23 @@
 		</tr>
 	</thead>
 	<tbody>
-        {% for i in data %}
+        {% for i, j in data %}
             <tr>
-                <td>{{i.name}}</td>
-                <td>{{i.score}}%</td>
+                <td>
+                    {% if i === 0 %}
+                        <i style="color: gold;" class="fa fa-trophy" aria-hidden="true"></i> 
+                    {%  elseif i === 1 %}
+                        <i style="color: silver;" class="fa fa-trophy" aria-hidden="true"></i> 
+                    {%  elseif i === 2 %}
+                        <i style="color: #cd7f32;" class="fa fa-trophy" aria-hidden="true"></i> 
+                    {% endif %} 
+                    {{j.name}}
+                </td>
+                <td>{{j.score}}%</td>
             </tr>
         {% endfor %}
 	</tbody>
 </table>
-  
-  
+
 </body>
 </html>

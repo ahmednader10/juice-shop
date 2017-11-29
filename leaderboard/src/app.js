@@ -1,7 +1,9 @@
 'use strict';
 
-var http = require('http');
 var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var swig = require('swig');
@@ -9,8 +11,7 @@ var path = require('path');
 
 var userModel = require('./models/users')
 var user_controller = require('./controllers/user_controller');
-
-var app = express();
+user_controller.set_socket(io)
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -28,15 +29,16 @@ mongoose.connect(mongo_uri, { useMongoClient: true });
 app.post('/', user_controller.submit_score);
 app.get('/', (req, res) => {
   user_controller.get_leaderboard().then(data => {
-    console.log('got data in app:', data)
+    data = data.sort(function(a, b){
+      return b.score - a.score;
+    });
     res.render('index', { data });
   })
 });
 
-var server;
+
 
 if(!module.parent) {
-  server = http.createServer(app);
   server.timeout = 0;
 
   var port = process.env.PORT || 3000;
