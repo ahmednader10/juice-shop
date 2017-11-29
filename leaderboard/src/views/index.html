@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title><Table> Pivotal Shop Leaderboard</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <h1><span class="blue">Pivotal Shop Leaderboard</h1>
+
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>User</h1></th>
+			<th><h1>Score</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+        {% for i in data %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.score}}%</td>
+            </tr>
+        {% endfor %}
+	</tbody>
+</table>
+  
+  
+</body>
+</html>

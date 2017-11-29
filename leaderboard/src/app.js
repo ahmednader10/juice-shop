@@ -27,7 +27,10 @@ mongoose.connect(mongo_uri, { useMongoClient: true });
 
 app.post('/', user_controller.submit_score);
 app.get('/', (req, res) => {
-  res.render('index');
+  user_controller.get_leaderboard().then(data => {
+    console.log('got data in app:', data)
+    res.render('index', { data });
+  })
 });
 
 var server;

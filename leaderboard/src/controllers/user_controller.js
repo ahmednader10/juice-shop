@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 module.exports.submit_score = saveScore;
+module.exports.get_leaderboard = getScores;
 
 
 function saveScore(req, res, next) {
@@ -24,4 +25,16 @@ function saveScore(req, res, next) {
 
     return res.status(200).send({ createdUser: newUser });
   });
+}
+
+
+function getScores() {
+  return User.find({}, (err, users) => {
+    if(err) {
+      return {};
+    }
+    return users.sort(function(a, b){
+      return b.score - a.score;
+    });
+  })
 }
