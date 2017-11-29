@@ -19,8 +19,9 @@ angular.module('juiceShop').controller('NavbarController', [
     })
 
     $scope.reset = function() {
-      administrationService.resetProgress()
-      $cookies.remove('continueCode')
+      administrationService.resetProgress().then(function() {
+        $cookies.remove('continueCode')
+      })
     }
 
     $rootScope.applicationName = 'OWASP Juice Shop'

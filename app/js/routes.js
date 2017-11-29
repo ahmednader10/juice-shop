@@ -76,6 +76,11 @@ angular.module('juiceShop').config(['$routeProvider', function ($routeProvider) 
     controller: 'AdministrationController'
   })
 
+  // $routeProvider.when('/leaderboard', {
+  //   templateUrl: 'views/leaderboard.html',
+  //   controller: 'LeaderboardController'
+  // })
+
     /* default route */
   $routeProvider.otherwise({redirectTo: '/search'})
 }])

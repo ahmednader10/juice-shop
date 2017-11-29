@@ -1,0 +1,50 @@
+version: '2'
+services: 
+  mongo:
+    image: mongo
+
+  leaderboard:
+    build: ./leaderboard
+    image: leaderboard
+    command: npm start
+    working_dir: /usr/leaderboard
+    environment:
+      - PORT=4200
+      - MONGO_URI=mongodb://mongo:27017/leaderboard
+      - NODE_ENV=production
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  juice_shop_1:
+    build: .
+    image: juice_shop_1
+    working_dir: /juice-shop
+    command: npm start
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - LEADERBOARD_URI=leaderboard
+      - LEADERBOARD_PORT=4200
+    links:
+      - leaderboard
+    depends_on:
+      - leaderboard
+      
+  juice_shop_2:
+    build: .
+    image: juice_shop_2
+    working_dir: /juice-shop
+    command: npm start
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - LEADERBOARD_URI=leaderboard
+      - LEADERBOARD_PORT=4200
+    links:
+      - leaderboard
+    depends_on:
+      - leaderboard

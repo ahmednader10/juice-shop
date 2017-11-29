@@ -24,7 +24,11 @@ angular.module('juiceShop').factory('AdministrationService', ['$http', '$q', fun
   }
 
   function resetProgress () {
-    return $http.get('/resetProgress')
+    var resp = $q.defer()
+    $http.get('/resetProgress').success(function(data) {
+      resp.resolve()
+    })
+    return resp.promise
   }
 
   return {

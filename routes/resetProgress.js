@@ -1,3 +1,4 @@
+var request = require('request')
 var challenges = require('../data/datacache').challenges
 var datacache = require('../data/datacache')
 const models = require('../models/index')
@@ -20,15 +21,38 @@ exports = module.exports = function resetProgress () {
         var score = (100 * solvedChallenges / count).toFixed(0)
 
         if (datacache.currentUser.email && datacache.currentUser.name) {
-            models.Leaderboard.create({
-                email: datacache.currentUser.email,
-                name: datacache.currentUser.name,
-                score: score
-            }).success(createdLeaderBoard => {
-                datacache.currentUser = {}
+            sendScoreData(datacache.currentUser, score, (err, resp, body) => {
+                if(err) {
+                    console.log('got error:', err)
+                    return res.status(500).send(err)
+                }
+
+                console.log(body)
+                return res.status(200).send(body)
             })
         }
-
-        return res.status(200).send('reset successful.')
     }
+}
+
+function sendScoreData(user, score, cb) {
+    var data = {
+        email: user.email,
+        name: user.name,
+        score: score
+    }
+
+    var postData = JSON.stringify(data);
+    var contentLength = postData.length;
+
+    var leaderboard_uri = process.env.LEADERBOARD_URI || 'localhost'
+    var leaderboard_port = process.env.LEADERBOARD_PORT || '4200'
+    request({
+        headers: {
+            'Content-Length': contentLength,
+            'Content-Type': 'application/json'
+        }, 
+        uri: 'http://' + leaderboard_uri + ':' + leaderboard_port + '/',
+        body: postData,
+        method: 'POST'
+    }, cb)
 }

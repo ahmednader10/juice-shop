@@ -43,6 +43,7 @@ const verify = require('./routes/verify')
 const utils = require('./lib/utils')
 const insecurity = require('./lib/insecurity')
 const models = require('./models')
+const basketModel = require('./models/basket')
 const datacreator = require('./data/datacreator')
 const notifications = require('./data/datacache').notifications
 const app = express()
@@ -262,8 +263,21 @@ exports.start = function (readyCallback) {
     })
   }
 
+  function dropTables() {
+    models.Basket.drop()
+    models.BasketItem.drop()
+    models.Challenge.drop()
+    models.Complaint.drop()
+    models.Feedback.drop()
+    models.Product.drop()
+    models.Recycle.drop()
+    models.SecurityAnswer.drop()
+    models.SecurityQuestion.drop()
+    models.User.drop()
+  }
+
   if (!this.server) {
-    models.sequelize.drop()
+    dropTables()
     models.sequelize.sync().success(function () {
       datacreator()
       this.server = server.listen(process.env.PORT || config.get('server.port'), () => {
