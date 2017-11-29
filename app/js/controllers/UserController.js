@@ -1,11 +1,13 @@
 angular.module('juiceShop').controller('UserController', [
   '$scope',
+  '$rootScope',
   '$uibModal',
   '$sce',
   'UserService',
-  function ($scope, $uibModal, $sce, userService) {
+  function ($scope, $rootScope, $uibModal, $sce, userService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     function findAll () {
       userService.find().then(function (users) {
         $scope.users = users

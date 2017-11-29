@@ -63,7 +63,7 @@
 
 
 <!-- HEADER -->
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" ng-hide="hideNavbar" role="navigation">
     <div class="container-fluid" ng-controller="NavbarController">
         <div class="navbar-header">
             <a href="#/"><img class="navbar-brand navbar-logo" src="/public/images/JuiceShop_Logo.png"></a><a class="navbar-brand" href="#/"><span ng-bind="applicationName"></span> <small ng-bind="version"></small></a>
@@ -114,7 +114,7 @@
             <li>
                 <form class="navbar-form" role="form" ng-controller="SearchController">
                     <div class="form-group">
-                        <input type="text" class="form-control" translate-attr="{ placeholder: 'SEARCH_PLACEHOLDER' }" ng-model="searchQuery">
+                        <input type="text" class="form-control" value="" translate-attr="{ placeholder: 'SEARCH_PLACEHOLDER' }" ng-model="searchQuery">
                     </div>
                     <button type="submit" id="searchButton" class="btn btn-default" ng-click="search()"><i class="fa fa-search fa-lg"></i> <span translate="NAV_SEARCH"></span></button>
                 </form>
@@ -139,8 +139,11 @@
                 <a href="#/score-board">Score Board</a>
             </li>
             -->
-            <li class="dropdown ribbon-spacer">
+            <li class="dropdown">
                 <a href="#/about"><i class="fa fa-info-circle fa-lg"></i> <span translate="TITLE_ABOUT"></span></a>
+            </li>
+            <li>
+                <a href="#/start-challenge" ng-click="reset()"><i class="fa fa-trophy fa-lg"></i> <span>Submit Progress</span></a>
             </li>
         </ul>
     </div>
@@ -148,7 +151,7 @@
 
 <h1 class="hidden" ng-bind="applicationName"></h1><!-- for SEO -->
 
-<div class="container" ng-controller="ServerStartedNotificationController">
+<!-- <div class="container" ng-controller="ServerStartedNotificationController">
     <div uib-alert ng-show="hackingProgress.autoRestoreMessage" ng-class="'alert alert-warning'" close="closeNotification()">
         <span translate="NOTIFICATION_SERVER_STARTED"></span>: {{hackingProgress.autoRestoreMessage}}
         <button class="btn btn-primary btn-xs" ng-click="clearProgress()" ng-disabled="hackingProgress.cleared">
@@ -157,7 +160,7 @@
             <span translate="RESET_HACKING_PROGRESS" ng-show="!hackingProgress.cleared"></span>
         </button>
     </div>
-</div>
+</div> -->
 
 <div class="container" ng-controller="ChallengeSolvedNotificationController">
     <div uib-alert ng-repeat="notification in notifications" ng-class="'alert alert-success'" close="closeNotification($index)">

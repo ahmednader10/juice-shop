@@ -31,7 +31,10 @@ const currentUser = require('./routes/currentUser')
 const login = require('./routes/login')
 const changePassword = require('./routes/changePassword')
 const resetPassword = require('./routes/resetPassword')
+const resetProgress = require('./routes/resetProgress')
 const securityQuestion = require('./routes/securityQuestion')
+const saveCurrentUser = require('./routes/saveCurrentUser')
+const getLeaderboard = require('./routes/getLeaderboard')
 const search = require('./routes/search')
 const coupon = require('./routes/coupon')
 const basket = require('./routes/basket')
@@ -189,6 +192,12 @@ app.get('/rest/continue-code', continueCode())
 app.put('/rest/continue-code/apply/:continueCode', restoreProgress())
 app.get('/rest/admin/application-version', appVersion())
 app.get('/redirect', redirect())
+
+///// 
+app.get('/resetProgress', resetProgress())
+app.get('/getLeaderboard', getLeaderboard()) 
+app.post('/saveCurrentUser', saveCurrentUser())
+
 /* File Upload */
 app.post('/file-upload', upload.single('file'), fileUpload())
 /* File Serving */

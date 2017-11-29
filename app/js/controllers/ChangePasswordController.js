@@ -1,10 +1,12 @@
 angular.module('juiceShop').controller('ChangePasswordController', [
   '$scope',
+  '$rootScope',
   '$location',
   'UserService',
-  function ($scope, $location, userService) {
+  function ($scope, $rootScope, $location, userService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     $scope.changePassword = function () {
       userService.changePassword({current: $scope.currentPassword, new: $scope.newPassword, repeat: $scope.newPasswordRepeat}).then(function () {
         $scope.error = undefined

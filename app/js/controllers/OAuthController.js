@@ -1,12 +1,14 @@
 angular.module('juiceShop').controller('OAuthController', [
   '$window',
+  '$rootScope',
   '$location',
   '$cookies',
   '$base64',
   'UserService',
-  function ($window, $location, $cookies, $base64, userService) {
+  function ($window, $rootScope, $location, $cookies, $base64, userService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     userService.oauthLogin(parseRedirectUrlParams()['access_token']).then(function (profile) {
       userService.save({email: profile.email, password: $base64.encode(profile.email)}).then(function () {
         login(profile)

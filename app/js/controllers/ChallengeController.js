@@ -1,5 +1,6 @@
 angular.module('juiceShop').controller('ChallengeController', [
   '$scope',
+  '$rootScope',
   '$sce',
   '$translate',
   '$cookies',
@@ -8,9 +9,11 @@ angular.module('juiceShop').controller('ChallengeController', [
   'ChallengeService',
   'ConfigurationService',
   'socket',
-  function ($scope, $sce, $translate, $cookies, $uibModal, $window, challengeService, configurationService, socket) {
+  function ($scope, $rootScope, $sce, $translate, $cookies, $uibModal, $window, challengeService, configurationService, socket) {
     'use strict'
-
+    
+    $rootScope.hideNavbar = false
+    
     configurationService.getApplicationConfiguration().then(function (data) {
       $scope.allowRepeatNotifications = data.application.showChallengeSolvedNotifications && data.application.showCtfFlagsInNotifications
       $scope.showChallengeHints = data.application.showChallengeHints

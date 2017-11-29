@@ -1,5 +1,6 @@
 angular.module('juiceShop').controller('SearchResultController', [
   '$scope',
+  '$rootScope',
   '$sce',
   '$window',
   '$uibModal',
@@ -7,9 +8,10 @@ angular.module('juiceShop').controller('SearchResultController', [
   '$translate',
   'ProductService',
   'BasketService',
-  function ($scope, $sce, $window, $uibModal, $location, $translate, productService, basketService) {
+  function ($scope, $rootScope, $sce, $window, $uibModal, $location, $translate, productService, basketService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     $scope.showDetail = function (id) {
       $uibModal.open({
         templateUrl: 'views/ProductDetail.html',

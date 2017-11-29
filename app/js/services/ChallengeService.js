@@ -41,10 +41,12 @@ angular.module('juiceShop').factory('ChallengeService', ['$http', '$q', function
     return result.promise
   }
 
-  return {
+  var challengeService = {
     find: find,
     repeatNotification: repeatNotification,
     continueCode: continueCode,
     restoreProgress: restoreProgress
   }
+
+  return challengeService
 }])

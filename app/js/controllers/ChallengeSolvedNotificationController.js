@@ -1,13 +1,15 @@
 angular.module('juiceShop').controller('ChallengeSolvedNotificationController', [
   '$scope',
+  '$rootScope',
   '$translate',
   '$cookies',
   'socket',
   'ConfigurationService',
   'ChallengeService',
-  function ($scope, $translate, $cookies, socket, configurationService, challengeService) {
+  function ($scope, $rootScope, $translate, $cookies, socket, configurationService, challengeService) {
     'use strict'
-
+    
+    $rootScope.hideNavbar = false
     $scope.notifications = []
 
     $scope.closeNotification = function (index) {

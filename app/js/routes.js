@@ -71,6 +71,11 @@ angular.module('juiceShop').config(['$routeProvider', function ($routeProvider) 
     controller: 'OAuthController'
   })
 
+  $routeProvider.when('/start-challenge', {
+    templateUrl: 'views/startChallenge.html',
+    controller: 'AdministrationController'
+  })
+
     /* default route */
   $routeProvider.otherwise({redirectTo: '/search'})
 }])

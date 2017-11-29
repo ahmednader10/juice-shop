@@ -1,5 +1,6 @@
 angular.module('juiceShop').controller('BasketController', [
   '$scope',
+  '$rootScope',
   '$sce',
   '$window',
   '$translate',
@@ -7,8 +8,10 @@ angular.module('juiceShop').controller('BasketController', [
   'BasketService',
   'UserService',
   'ConfigurationService',
-  function ($scope, $sce, $window, $translate, $uibModal, basketService, userService, configurationService) {
+  function ($scope, $rootScope, $sce, $window, $translate, $uibModal, basketService, userService, configurationService) {
     'use strict'
+
+    $rootScope.hideNavbar = false
 
     userService.whoAmI().then(function (data) {
       $scope.userEmail = data.email || 'anonymous'

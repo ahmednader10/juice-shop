@@ -1,9 +1,11 @@
 angular.module('juiceShop').controller('FeedbackController', [
   '$scope',
+  '$rootScope',
   '$sce',
   'FeedbackService',
-  function ($scope, $sce, feedbackService) {
+  function ($scope, $rootScope, $sce, feedbackService) {
     'use strict'
+    $rootScope.hideNavbar = false
     $scope.interval = 5000
     $scope.noWrapSlides = false
     $scope.active = 0

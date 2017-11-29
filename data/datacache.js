@@ -7,4 +7,6 @@ exports.baskets = {}
 exports.basketItems = {}
 exports.complaints = {}
 
+exports.currentUser = {}
+
 exports.notifications = []

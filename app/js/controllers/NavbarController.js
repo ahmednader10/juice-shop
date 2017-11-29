@@ -1,8 +1,11 @@
 angular.module('juiceShop').controller('NavbarController', [
   '$scope',
   '$rootScope',
-  'AdministrationService', 'ConfigurationService',
-  function ($scope, $rootScope, administrationService, configurationService) {
+  '$cookies',
+  '$location',
+  'AdministrationService', 
+  'ConfigurationService',
+  function ($scope, $rootScope, $cookies, $location, administrationService, configurationService) {
     'use strict'
 
     $scope.version = ''
@@ -15,8 +18,14 @@ angular.module('juiceShop').controller('NavbarController', [
       console.log(err)
     })
 
+    $scope.reset = function() {
+      administrationService.resetProgress()
+      $cookies.remove('continueCode')
+    }
+
     $rootScope.applicationName = 'OWASP Juice Shop'
     $rootScope.showGitHubRibbon = true
+    $rootScope.hideNavbar = false;
     configurationService.getApplicationConfiguration().then(function (config) {
       if (config && config.application && config.application.name !== null) {
         $rootScope.applicationName = config.application.name

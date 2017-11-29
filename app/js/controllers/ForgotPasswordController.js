@@ -1,10 +1,12 @@
 angular.module('juiceShop').controller('ForgotPasswordController', [
   '$scope',
+  '$rootScope',
   '$location',
   'UserService',
   'SecurityQuestionService',
-  function ($scope, $location, userService, securityQuestionService) {
+  function ($scope, $rootScope, $location, userService, securityQuestionService) {
     'use strict'
+    $rootScope.hideNavbar = false
 
     $scope.findSecurityQuestion = function () {
       $scope.securityQuestion = undefined

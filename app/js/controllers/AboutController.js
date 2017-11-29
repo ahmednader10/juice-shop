@@ -1,2 +1,5 @@
 angular.module('juiceShop').controller('AboutController', [
-  function () {}])
+  '$rootScope',
+  function ($rootScope) {
+    $rootScope.hideNavbar = false
+  }])

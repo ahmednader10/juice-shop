@@ -80,17 +80,17 @@ function createChallenges () {
   }).success(challenge => {
     challenges.loginBenderChallenge = challenge
   })
-  models.Challenge.create({
-    name: 'XSS Tier 1',
-    category: 'XSS',
-    description: 'Perform a <i>reflected</i> XSS attack with <code>&lt;script&gt;alert("XSS1")&lt;/script&gt;</code>.',
-    difficulty: 1,
-    hint: addHint('Look for an input field where its content appears in the response HTML when its form is submitted.'),
-    hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/xss.html#perform-a-reflected-xss-attack'),
-    solved: false
-  }).success(challenge => {
-    challenges.localXssChallenge = challenge
-  })
+  // models.Challenge.create({
+  //   name: 'XSS Tier 1',
+  //   category: 'XSS',
+  //   description: 'Perform a <i>reflected</i> XSS attack with <code>&lt;script&gt;alert("XSS1")&lt;/script&gt;</code>.',
+  //   difficulty: 1,
+  //   hint: addHint('Look for an input field where its content appears in the response HTML when its form is submitted.'),
+  //   hintUrl: addHint('https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part2/xss.html#perform-a-reflected-xss-attack'),
+  //   solved: false
+  // }).success(challenge => {
+  //   challenges.localXssChallenge = challenge
+  // })
   models.Challenge.create({
     name: 'XSS Tier 2',
     category: 'XSS',

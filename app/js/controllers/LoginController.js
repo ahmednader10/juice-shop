@@ -1,12 +1,14 @@
 angular.module('juiceShop').controller('LoginController', [
   '$scope',
+  '$rootScope',
   '$window',
   '$location',
   '$cookies',
   'UserService',
-  function ($scope, $window, $location, $cookies, userService) {
+  function ($scope, $rootScope, $window, $location, $cookies, userService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     var email = $cookies.get('email')
     if (email) {
       $scope.user = {}

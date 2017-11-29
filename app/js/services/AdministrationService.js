@@ -13,7 +13,23 @@ angular.module('juiceShop').factory('AdministrationService', ['$http', '$q', fun
     return version.promise
   }
 
+  function saveCurrentUser(user) {
+    var createdUser = $q.defer()
+    $http.post('/saveCurrentUser', user).success(function (data) {
+      createdUser.resolve(data.data)
+    }).error(function (err) {
+      createdUser.reject(err)
+    })
+    return createdUser.promise
+  }
+
+  function resetProgress () {
+    return $http.get('/resetProgress')
+  }
+
   return {
-    getApplicationVersion: getApplicationVersion
+    getApplicationVersion: getApplicationVersion,
+    saveCurrentUser: saveCurrentUser,
+    resetProgress: resetProgress
   }
 }])

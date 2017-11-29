@@ -1,12 +1,14 @@
 angular.module('juiceShop').controller('RegisterController', [
   '$scope',
+  '$rootScope',
   '$location',
   'UserService',
   'SecurityQuestionService',
   'SecurityAnswerService',
-  function ($scope, $location, userService, securityQuestionService, securityAnswerService) {
+  function ($scope, $rootScope, $location, userService, securityQuestionService, securityAnswerService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     securityQuestionService.find().then(function (securityQuestions) {
       $scope.securityQuestions = securityQuestions
     }).catch(function (err) {

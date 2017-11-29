@@ -1,12 +1,14 @@
 angular.module('juiceShop').controller('ServerStartedNotificationController', [
   '$scope',
+  '$rootScope',
   '$translate',
   '$cookies',
   'ChallengeService',
   'socket',
-  function ($scope, $translate, $cookies, challengeService, socket) {
+  function ($scope, $rootScope, $translate, $cookies, challengeService, socket) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     $scope.hackingProgress = { }
 
     $scope.closeNotification = function () {

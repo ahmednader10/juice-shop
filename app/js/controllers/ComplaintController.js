@@ -1,11 +1,13 @@
 angular.module('juiceShop').controller('ComplaintController', [
   '$scope',
+  '$rootScope',
   'Upload',
   'ComplaintService',
   'UserService',
-  function ($scope, Upload, complaintService, userService) {
+  function ($scope, $rootScope, Upload, complaintService, userService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     function initComplaint () {
       userService.whoAmI().then(function (user) {
         $scope.complaint = {}

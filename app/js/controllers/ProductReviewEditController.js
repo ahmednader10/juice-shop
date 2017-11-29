@@ -1,11 +1,13 @@
 angular.module('juiceShop').controller('ProductReviewEditController', [
   '$scope',
+  '$rootScope',
   '$uibModalInstance',
   'ProductReviewService',
   'review',
-  function ($scope, $uibModalInstance, productReviewService, review) {
+  function ($scope, $rootScope, $uibModalInstance, productReviewService, review) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     $scope.id = review._id
     $scope.message = review.message
 

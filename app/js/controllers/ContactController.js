@@ -1,10 +1,12 @@
 angular.module('juiceShop').controller('ContactController', [
   '$scope',
+  '$rootScope',
   'FeedbackService',
   'UserService',
-  function ($scope, feedbackService, userService) {
+  function ($scope, $rootScope, feedbackService, userService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     userService.whoAmI().then(function (data) {
       $scope.feedback = {}
       $scope.feedback.UserId = data.id

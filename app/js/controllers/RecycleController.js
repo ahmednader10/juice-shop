@@ -1,11 +1,13 @@
 angular.module('juiceShop').controller('RecycleController', [
   '$scope',
+  '$rootScope',
   'RecycleService',
   'UserService',
   'ConfigurationService',
-  function ($scope, recycleService, userService, configurationService) {
+  function ($scope, $rootScope, recycleService, userService, configurationService) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     configurationService.getApplicationConfiguration().then(function (config) {
       if (config && config.application && config.application.recyclePage) {
         $scope.topImage = '/public/images/products/' + config.application.recyclePage.topProductImage

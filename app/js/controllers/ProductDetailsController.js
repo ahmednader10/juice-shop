@@ -1,5 +1,6 @@
 angular.module('juiceShop').controller('ProductDetailsController', [
   '$scope',
+  '$rootScope',
   '$sce',
   '$q',
   '$uibModal',
@@ -7,9 +8,10 @@ angular.module('juiceShop').controller('ProductDetailsController', [
   'ProductReviewService',
   'UserService',
   'id',
-  function ($scope, $sce, $q, $uibModal, productService, productReviewService, userService, id) {
+  function ($scope, $rootScope, $sce, $q, $uibModal, productService, productReviewService, userService, id) {
     'use strict'
 
+    $rootScope.hideNavbar = false
     productService.get(id).then(function (product) {
       $scope.product = product
       $scope.product.description = $sce.trustAsHtml($scope.product.description)
