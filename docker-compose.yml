@@ -8,6 +8,8 @@ services:
     image: leaderboard
     command: npm start
     working_dir: /usr/leaderboard
+    ports:
+      - "4200:4200"
     environment:
       - PORT=4200
       - MONGO_URI=mongodb://mongo:27017/leaderboard
