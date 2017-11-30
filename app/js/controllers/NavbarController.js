@@ -5,7 +5,8 @@ angular.module('juiceShop').controller('NavbarController', [
   '$location',
   'AdministrationService', 
   'ConfigurationService',
-  function ($scope, $rootScope, $cookies, $location, administrationService, configurationService) {
+  'socket',
+  function ($scope, $rootScope, $cookies, $location, administrationService, configurationService, socket) {
     'use strict'
 
     $scope.version = ''
@@ -21,6 +22,7 @@ angular.module('juiceShop').controller('NavbarController', [
     $scope.reset = function() {
       administrationService.resetProgress().then(function() {
         $cookies.remove('continueCode')
+        $rootScope.$broadcast('clear all notifications');
       })
     }
 

@@ -45,6 +45,11 @@ angular.module('juiceShop').controller('ChallengeSolvedNotificationController', 
       })
     }
 
+    $scope.$on('clear all notifications', function(event) {
+      console.log("I should clear all notifications")
+      $scope.notifications = []
+    })
+
     socket.on('challenge solved', function (data) {
       if (data && data.challenge) {
         if (!data.hidden) {
