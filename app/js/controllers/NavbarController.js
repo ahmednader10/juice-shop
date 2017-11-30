@@ -19,10 +19,11 @@ angular.module('juiceShop').controller('NavbarController', [
       console.log(err)
     })
 
-    $scope.reset = function() {
+    $scope.reset = function(path) {
       administrationService.resetProgress().then(function() {
         $cookies.remove('continueCode')
         $rootScope.$broadcast('clear all notifications');
+        $location.path(path)
       })
     }
 

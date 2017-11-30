@@ -1,7 +1,8 @@
 var request = require('request')
 var challenges = require('../data/datacache').challenges
 var datacache = require('../data/datacache')
-const models = require('../models/index')
+const models = require('../models')
+const datacreator = require('../data/datacreatorCallback')
 
 exports = module.exports = function resetProgress () {
     return (req, res) => {
@@ -14,9 +15,9 @@ exports = module.exports = function resetProgress () {
             
             if(challenge.solved === false) continue;
             solvedChallenges++
-            challenge.solved = false 
+            // challenge.solved = false 
 
-            challenge.save()
+            // challenge.save()
         }
         var score = (100 * solvedChallenges / count).toFixed(0)
 
@@ -28,11 +29,30 @@ exports = module.exports = function resetProgress () {
                 }
 
                 console.log(body)
-                return res.status(200).send(body)
+                dropTables(function () {
+                    models.sequelize.sync().success(function () {
+                        datacreator(function() {
+                            return res.status(200).send(body)
+                        })
+                    })
+                })
             })
         }
     }
 }
+
+function dropTables() {
+    models.Basket.destroy({ })
+    models.BasketItem.destroy({ })
+    models.Challenge.destroy({ })
+    models.Complaint.destroy({ })
+    models.Feedback.destroy({ })
+    models.Product.destroy({ })
+    models.Recycle.destroy({ })
+    models.SecurityAnswer.destroy({ })
+    models.SecurityQuestion.destroy({ })
+    models.User.destroy({ })
+  }
 
 function sendScoreData(user, score, cb) {
     var data = {

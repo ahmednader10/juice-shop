@@ -39,3 +39,7 @@
 .capitalize {
     text-transform: capitalize;
 }
+
+a:hover {
+    cursor:pointer;
+}
