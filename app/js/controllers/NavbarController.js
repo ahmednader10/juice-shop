@@ -3,7 +3,7 @@ angular.module('juiceShop').controller('NavbarController', [
   '$rootScope',
   '$cookies',
   '$location',
-  'AdministrationService', 
+  'AdministrationService',
   'ConfigurationService',
   'socket',
   function ($scope, $rootScope, $cookies, $location, administrationService, configurationService, socket) {
@@ -20,11 +20,10 @@ angular.module('juiceShop').controller('NavbarController', [
     })
 
     $scope.reset = function(path) {
-      administrationService.resetProgress().then(function() {
-        $cookies.remove('continueCode')
-        $rootScope.$broadcast('clear all notifications');
-        $location.path(path)
-      })
+      $rootScope.$broadcast('clear all notifications');
+      $cookies.remove('continueCode')
+      $location.path(path)
+      administrationService.resetProgress()
     }
 
     $rootScope.applicationName = 'OWASP Juice Shop'

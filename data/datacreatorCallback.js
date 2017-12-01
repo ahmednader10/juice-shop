@@ -117,7 +117,7 @@ function createChallenges (callback) {
   // }).success(challenge => {
     // count++
     if (count == 115)
-      callback()// 
+      callback()//
     console.log(count)
   //   challenges.localXssChallenge = challenge
   // })
@@ -878,7 +878,7 @@ function createProducts (callback) {
       count++
       if (count == 115)
         callback()
-      console.log(count)     
+      console.log(count)
       softDeleteIfConfigured(product)
       if (product.description.match(/Seasonal special offer! Limited availability!/)) {
         products.christmasSpecial = product
@@ -890,7 +890,7 @@ function createProducts (callback) {
         }
       }
       return product
-    }).success(product => {  
+    }).success(product => {
       if (reviews) {
         return Promise.all(
           reviews
